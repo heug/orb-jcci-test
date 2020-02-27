@@ -16,14 +16,14 @@ jobs:
   convert:
     executor: j-cci/default
     steps:
-      - install
-      - convert-to-circleci
+      - j-cci/install
+      - j-cci/convert-to-circleci
 
 workflows:
   version: 2
-  aws-cli:
+  jcci:
     jobs:
       - export-jenkinsfile
-      - convert-to-circleci:
+      - convert:
           requires:
             - export-jenkinsfile
