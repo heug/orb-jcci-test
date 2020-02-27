@@ -6,17 +6,16 @@ orbs:
 jobs:
   export-jenkinsfile:
     docker:
-      - cimg/base:2020.01
+      - image: cimg/base:2020.01
     steps:
       - checkout
       - run: mkdir -p ~/jenkinsfile-export
       # Confirm file path to local Jenkinsfile
       - run: cp ./Jenkinsfile ~/jenkinsfile-export
       - persist_to_workspace:
-          root: ~/jenkinsfile-export              
+          root: ~/jenkinsfile-export
   convert:
-    executor: 
-      name: j-cci/default
+    executor: j-cci/default
     steps:
       - j-cci/install
       - j-cci/convert-to-circleci
