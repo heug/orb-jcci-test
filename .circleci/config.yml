@@ -26,5 +26,6 @@ workflows:
   jcci:
     jobs:
       - export-jenkinsfile
-        requires:
-          - export-jenkinsfile
+      - convert:
+          requires:
+            - export-jenkinsfile
