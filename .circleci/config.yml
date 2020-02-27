@@ -1,0 +1,29 @@
+version: 2.1
+
+orbs:
+  j-cci: heug/jcci@x.y
+
+jobs:
+  export-jenkinsfile:
+    executor: cimg/base:2020.01
+    steps:
+      - checkout
+      - run: mkdir -p ~/jenkinsfile-export
+      # Confirm file path to local Jenkinsfile
+      - run: cp ./Jenkinsfile ~/jenkinsfile-export
+      - persist_to_workspace:
+          root: ~/jenkinsfile-export              
+  convert:
+    executor: j-cci/default
+    steps:
+      - install
+      - convert-to-circleci
+
+workflows:
+  version: 2
+  aws-cli:
+    jobs:
+      - export-jenkinsfile
+      - convert-to-circleci:
+          requires:
+            - export-jenkinsfile
