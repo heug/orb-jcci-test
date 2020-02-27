@@ -5,9 +5,8 @@ orbs:
 
 jobs:
   export-jenkinsfile:
-    executor: 
-      docker:
-        - cimg/base:2020.01
+    docker:
+      - cimg/base:2020.01
     steps:
       - checkout
       - run: mkdir -p ~/jenkinsfile-export
@@ -27,6 +26,5 @@ workflows:
   jcci:
     jobs:
       - export-jenkinsfile
-      - convert:
-          requires:
-            - export-jenkinsfile
+        requires:
+          - export-jenkinsfile
