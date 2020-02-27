@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  j-cci: heug/jcci@0.0.6
+  j-cci: heug/jcci@0.0.7
 
 jobs:
   export-jenkinsfile:
