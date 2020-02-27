@@ -1,11 +1,13 @@
 version: 2.1
 
 orbs:
-  j-cci: heug/jcci@0.0.2
+  j-cci: heug/jcci@x.y
 
 jobs:
   export-jenkinsfile:
-    executor: cimg/base:2020.01
+    executor: 
+      docker:
+        - cimg/base:2020.01
     steps:
       - checkout
       - run: mkdir -p ~/jenkinsfile-export
