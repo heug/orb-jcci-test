@@ -1,22 +1,15 @@
 version: 2.1
 
 orbs:
-  j-cci: heug/jcci@0.0.7
+  j-cci: heug/jcci@0.8
 
 jobs:
   export-jenkinsfile:
-    docker:
-      - image: cimg/base:2020.01
+    executor: j-cci/base
     steps:
-      - checkout
-      - run: mkdir -p ~/jenkinsfile-export
-      # Confirm file path to local Jenkinsfile
-      - run: cp ./Jenkinsfile ~/jenkinsfile-export
-      - persist_to_workspace:
-          root: ~/jenkinsfile-export
-          paths: Jenkinsfile
+      - j-cci/setup
   convert:
-    executor: j-cci/default
+    executor: j-cci/convertor
     steps:
       - j-cci/install
       - j-cci/convert-to-circleci
