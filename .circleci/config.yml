@@ -8,23 +8,23 @@ jobs:
     docker:
       - image: cimg/base:2020.01
     steps:
-#       - checkout
+      - checkout
       - run: mkdir -p ~/jenkinsfile-export
       # Confirm file path to local Jenkinsfile
       - run: cp ./Jenkinsfile ~/jenkinsfile-export
       - persist_to_workspace:
           root: ~/jenkinsfile-export
-  convert:
-    executor: j-cci/default
-    steps:
-      - j-cci/install
-      - j-cci/convert-to-circleci
+  # convert:
+  #   executor: j-cci/default
+  #   steps:
+  #     - j-cci/install
+  #     - j-cci/convert-to-circleci
 
 workflows:
   version: 2
   jcci:
     jobs:
       - export-jenkinsfile
-      - convert:
-          requires:
-            - export-jenkinsfile
+      # - convert:
+      #     requires:
+      #       - export-jenkinsfile
